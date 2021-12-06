@@ -287,6 +287,8 @@ aria2c -x 16 -s 16 example.com/funnyvideo.mp4
 ## youtube-dl
 requires [`youtube-dl`](https://github.com/ytdl-org/youtube-dl) package
 
+works on many different video and audio sites, including YouTube!
+
 may not work right unless you update it
 
 Download a YouTube video:
@@ -299,9 +301,18 @@ Download a YouTube video and convert to mp3:
 youtube-dl --restrict-filenames --ignore-errors -x --audio-format mp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
-Download an album from bandcamp
+Download an album from bandcamp as mp3 files:
 ```
 youtube-dl https://example.bandcamp.com/album/an-album -x --audio-format best
+```
+
+Download a video from any other website via m3u8 manifest
+
+(Chrome) Right Click -> Inspect -> Network -> search "m3u8" -> refresh page -> right click -> Copy -> link address
+
+download via m3u8:
+```
+youtube-dl https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8
 ```
 
 ## eyeD3
