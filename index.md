@@ -272,6 +272,11 @@ Download a file from a website over http:
 wget example.com/funnymeme.jpg
 ```
 
+Download all URL's listed in a text file:
+```bash
+wget -i example.com/fire_mixtape.m3u
+```
+
 ## aria2c
 requires [`aria2`](https://aria2.github.io/) package
 
