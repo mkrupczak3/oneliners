@@ -89,7 +89,7 @@ sudo chmod go-w file1.txt
 
 allow `group` and `others` to read a file:
 ```bash
-sudo chmod go+r file`.txt
+sudo chmod go+r file1.txt
 ```
 
 ## tar 
