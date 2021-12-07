@@ -461,7 +461,7 @@ magick identify portrait.jpeg
 
 set `-P` to number of physical CPU cores on computer
 
-Convert raw images, commonly used in photography, web-safe JPEG:
+Convert raw images, commonly used in photography, to web-safe JPEG:
 ```bash
 find . -type f \( -iname \*.CR2 -o -iname \*.ARW -o -iname \*.3fr -o -iname \*.ari -o -iname \*.arw -o -iname \*.bay -o -iname \*.braw -o -iname \*.crw -o -iname \*.cr2 -o -iname \*.cr3 -o -iname \*.cap -o -iname \*.data -o -iname \*.dcs -o -iname \*.dcr -o -iname \*.dng -o -iname \*.drf -o -iname \*.eip -o -iname \*.erf -o -iname \*.fff -o -iname \*.gpr -o -iname \*.iiq -o -iname \*.k25 -o -iname \*.kdc -o -iname \*.mdc -o -iname \*.mef -o -iname \*.mos -o -iname \*.mrw -o -iname \*.nef -o -iname \*.nrw -o -iname \*.obm -o -iname \*.orf -o -iname \*.pef -o -iname \*.ptx -o -iname \*.pxn -o -iname \*.r3d -o -iname \*.raf -o -iname \*.raw -o -iname \*.rwl -o -iname \*.rw2 -o -iname \*.rwz -o -iname \*.sr2 -o -iname \*.srf -o -iname \*.srw -o -iname \*.tif -o -iname \*.x3f \) -print0 | xargs -0 -n 1 -P 4 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
 ```
