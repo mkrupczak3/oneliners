@@ -11,12 +11,85 @@ Merge in your own slick lines 📋✍️: [oneliners GitHub repo](https://github
 Oneliners for disks and files
 
 ## find
+start search from current directory (.)
 
-Find where a file of a certain name is located
-
-start search from current directory (.):
+Find where a file of a certain name (case insensitive) is located:
 ```bash
 find . -type f -iname init.el
+```
+
+Find where a directory of a certain name (case insensitive) is located:
+```bash
+find . -type d -iname ".emacs.d"
+```
+
+Find files of multiple extentions:
+```bash
+find . -type f -iname "*.cpp" -o -iname "*.txt" 
+```
+_where `-o` acts as a logical OR operator_
+
+## grep
+requires the [`grep`](https://en.wikipedia.org/wiki/Grep) package
+
+a powerful tool for searching plain-text
+
+Find occurences of a phrase in all files in current directory
+```bash
+grep -iIn "kind: ConfigMap" *
+```
+_where * is a wildcard_
+
+Find occurences of a phrase in all files in current directory and its subdirectories:
+```bash
+grep -iIrn "kind: ReplicaSet"
+```
+
+## ag
+requires [`the_silver_searcher`](https://github.com/ggreer/the_silver_searcher) (_silversearcher-ag_) package
+
+much faster than `grep`, useful for searching through large directory
+
+Search occurences of a phrase in all files in current directory and its subdirectories:
+```bash
+ag "kind: ReplicaSet"
+```
+
+## permissions (`chown` and `chmod`)
+
+change ownership of a file `file1.txt` to user `root`:
+```bash
+sudo chown root file1.txt
+```
+
+change group ownership of a file `file1.txt` to group `sudo`:
+```bash
+sudo chown :sudo file1.txt
+```
+
+do both of the above at once:
+```bash
+sudo chown root:sudo file1.txt
+```
+
+add execute permissions to a file:
+```bash
+sudo chmod ugo+x gettools.sh
+```
+
+remove execute permissions from a file:
+```bash
+sudo chmod ugo-x gettols.sh
+```
+
+remove `group` and `others` ability to write a file:
+```bash
+sudo chmod go-w file1.txt
+```
+
+allow `group` and `others` to read a file:
+```bash
+sudo chmod go+r file`.txt
 ```
 
 ## tar 
@@ -100,7 +173,6 @@ From a given disk device, [`mount`](https://linux.die.net/man/8/mount) it to fil
 _mount [OPTION/S] DEVICE_NAME DIRECTORY_NAME_
 
 ```bash
-
 mount -t ext4 /dev/sdb1 /mnt/media
 ```
 
@@ -163,12 +235,12 @@ Format a whole thumbdrive as FAT32, without a partition table
 part of the [`dosfstools`](https://github.com/dosfstools/dosfstools) package
 
 useful for many legacy hardware devices:
-```
+```bash
 sudo umount /dev/sdc1 && sudo mkdosfs -F 32 -I /dev/sdc1
 ```
 
 can be used for formatting FAT16 or FAT12 as well:
-```
+```bash
 sudo umount /dev/sdc1 && sudo mkdosfs -F 16 -I /dev/sdc1
 ```
 
@@ -307,7 +379,7 @@ youtube-dl --restrict-filenames --ignore-errors -x --audio-format mp3 https://ww
 ```
 
 Download an album from bandcamp as mp3 files:
-```
+```bash
 youtube-dl https://example.bandcamp.com/album/an-album -x --audio-format best
 ```
 
@@ -316,7 +388,7 @@ Download a video from any other website via m3u8 manifest
 (Chrome) Right Click -> Inspect -> Network -> search "m3u8" -> refresh page -> right click -> Copy -> link address
 
 download via m3u8:
-```
+```bash
 youtube-dl https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8
 ```
 
@@ -335,7 +407,7 @@ eyeD3 -n 2 song.mp3
 
 ---
 # FFMPEG
-Oneliners for FFMPEG, the powerful video manipulation tool
+Oneliners for [`FFMPEG`](https://en.wikipedia.org/wiki/FFmpeg), the powerful video manipulation tool
 
 All commands require [`ffmpeg`](https://en.wikipedia.org/wiki/FFmpeg) package
 
@@ -374,9 +446,62 @@ upscale a video:
 ```bash
 ffmpeg -i input.mp4 -strict -2 -max_muxing_queue_size 9999 -threads 4 -vf scale=1920x1080:flags=lanczos -c:v libx264 -preset slow -crf 21 output_compress_1080p.mp4
 ```
+---
+# ImageMagick
+Oneliners for [`ImageMagick`](https://imagemagick.org/index.php), the powerful photo manipulation tool
 
+credit [Drew Lustro](https://drewlustro.com/blog/batch-convert-raw-images-to-jpeg-with-imagemagick-in-parallel)
+
+All commands require [`ImageMagick`](https://imagemagick.org/index.php) package and associated pre-requisites
+
+Display info on an image:
+```bash
+magick identify portrait.jpeg 
+```
+
+set `-P` to number of physical CPU cores on computer
+
+Convert raw images, commonly used in photography, web-safe JPEG:
+```bash
+find . -type f \( -iname \*.CR2 -o -iname \*.ARW -o -iname \*.3fr -o -iname \*.ari -o -iname \*.arw -o -iname \*.bay -o -iname \*.braw -o -iname \*.crw -o -iname \*.cr2 -o -iname \*.cr3 -o -iname \*.cap -o -iname \*.data -o -iname \*.dcs -o -iname \*.dcr -o -iname \*.dng -o -iname \*.drf -o -iname \*.eip -o -iname \*.erf -o -iname \*.fff -o -iname \*.gpr -o -iname \*.iiq -o -iname \*.k25 -o -iname \*.kdc -o -iname \*.mdc -o -iname \*.mef -o -iname \*.mos -o -iname \*.mrw -o -iname \*.nef -o -iname \*.nrw -o -iname \*.obm -o -iname \*.orf -o -iname \*.pef -o -iname \*.ptx -o -iname \*.pxn -o -iname \*.r3d -o -iname \*.raf -o -iname \*.raw -o -iname \*.rwl -o -iname \*.rw2 -o -iname \*.rwz -o -iname \*.sr2 -o -iname \*.srf -o -iname \*.srw -o -iname \*.tif -o -iname \*.x3f \) -print0 | xargs -0 -n 1 -P 4 -I {} convert -verbose -units PixelsPerInch {} -colorspace sRGB -resize 2560x2650 -set filename:new '%t-%wx%h' -density 72 -format JPG -quality 80 '%[filename:new].jpg'
+```
+
+**modify for:**
+
+* potato CPU: `...xargs -0 -n 1 -P 1 -I {}...`
+* NASA CPU: `...xargs -0 -n 1 -P 64 -I {}...`
+* Max Twitter resolution:  `...-resize 4096x4096...` (preserves aspect ratio, scales by maximum of h and w) 
+* higher quality JPEG: `...-format JPG -quality 97...`
+
+
+set `-quality` to desired level of compression, from 1-100
+
+Compress a JPEG to smaller file size:
+```bash
+convert image.jpg -quality 75 output_file.jpg
+```
+
+Convert an image to a PDF:
+```bash
+convert vaccine_card.jpg vaccine_card.pdf
+```
+
+Convert video to GIF animated image:
+```bash
+convert -quiet -delay 1 a.avi a.gif
+```
+
+# Ghostscript (PDF tool)
+
+Merge PDF files:
+```bash
+gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=vaccine_combined.pdf vaccine_card.pdf booster.pdf
+```
+
+---
+# Get Tools
 ## Install Matthew's favorite tools
-Uses Matthew's gettools.sh BASH script
+Uses Matthew's [gettools.sh](https://github.com/mkrupczak3/gettools) BASH script
 
 works on MacOS, Debian (e.g. Ubuntu), Fedora (e.g. RHEL), and Arch (e.g. Manjaro) based systems
 
