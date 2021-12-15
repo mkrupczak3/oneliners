@@ -389,7 +389,7 @@ Download a video from any other website via m3u8 manifest
 
 download via m3u8:
 ```bash
-youtube-dl https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8
+youtube-dl "https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8"
 ```
 
 ## eyeD3
