@@ -393,7 +393,7 @@ youtube-dl https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f
 ```
 
 ## eyeD3
-requires `eyeD3` package
+requires [`eyeD3`](https://eyed3.readthedocs.io/en/latest/) package
 
 label all .mp3 files in current directory with Artist and Album name:
 ```bash
@@ -403,6 +403,11 @@ eyeD3 -a "Example Artist" -A "Example Album" *.mp3
 set track number for an .mp3 file
 ```bash
 eyeD3 -n 2 song.mp3
+```
+
+set title for an .mp3 file
+```bash
+eyeD3 -t "In The End" intheend.mp3
 ```
 
 ---
