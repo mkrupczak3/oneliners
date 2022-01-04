@@ -272,6 +272,19 @@ rsync -rtvP --bwlimit=512 [source] [destination]
 # 
 # If interrupted, just run the command again and it will pickup where it left off
 ```
+## SSH Tunneling
+
+Oneliners for network tunneling over SSH. 
+
+Quick, easy and secure method to access remote services
+```bash
+ssh -L local_port:remote_address:remote_port username@server.com
+```
+
+Make a local resource available on a remote machine
+```bash
+ssh -R remote_port:local_address:local_port username@server.com
+```
 
 ## ping
 
