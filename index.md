@@ -218,6 +218,11 @@ can detect some fatal errors before data loss
 smartctl -t short /dev/sda
 ```
 
+### Run a long test on a disk
+```bash
+smartctl -t long /dev/sda
+```
+
 ### Human-readable health of a disk
 ```bash
 smartctl -H /dev/sda 
