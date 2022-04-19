@@ -25,7 +25,7 @@ find . -type d -iname ".emacs.d"
 
 Find files of multiple extentions:
 ```bash
-find . -type f -iname "*.cpp" -o -iname "*.txt" 
+find . -type f -iname "*.cpp" -o -iname "*.txt"
 ```
 _where `-o` acts as a logical OR operator_
 
@@ -92,7 +92,7 @@ allow `group` and `others` to read a file:
 sudo chmod go+r file1.txt
 ```
 
-## tar 
+## tar
 
 Like .zip files, but for Linux
 
@@ -137,7 +137,7 @@ creates another inode to the data on hard disk,
 
 completely transparent to underlying software
 
-```bash 
+```bash
 ln SOURCE TARGET
 ```
 
@@ -225,7 +225,7 @@ smartctl -t long /dev/sda
 
 ### Human-readable health of a disk
 ```bash
-smartctl -H /dev/sda 
+smartctl -H /dev/sda
 ```
 
 ### All info of a disk, including results of all tests
@@ -262,7 +262,7 @@ Remotely SYNC two directories
 smarter than `scp` and easier than creating a tar:
 
 ```bash
-rsync -rtvP --bwlimit=512 [source] [destination] 
+rsync -rtvP --bwlimit=512 [source] [destination]
 ```
 
 ```
@@ -274,12 +274,12 @@ rsync -rtvP --bwlimit=512 [source] [destination]
 # -v to show what is going on
 # -P shows the progress
 # --bwlimit=512 limits the upload to 512Kb/sec, ~= 4.1 mbps
-# 
+#
 # If interrupted, just run the command again and it will pickup where it left off
 ```
 ## SSH Tunneling
 
-Oneliners for network tunneling over SSH. 
+Oneliners for network tunneling over SSH.
 
 Quick, easy and secure method to access remote services
 ```bash
@@ -348,7 +348,7 @@ simple way to test if a TCP session can be initiated to a host at a port:
 telnet 1.1.1.1 80
 ```
 
-press ctrl+] then ctrl+d to exit (US keyboard) 
+press ctrl+] then ctrl+d to exit (US keyboard)
 
 ---
 # Downloading
@@ -379,8 +379,8 @@ aria2c -x 16 -s 16 example.com/funnyvideo.mp4
 #          ---------> the number of connections here
 ```
 
-## youtube-dl
-requires [`youtube-dl`](https://github.com/ytdl-org/youtube-dl) package
+## yt-dlp
+requires [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) package
 
 works on many different video and audio sites, including YouTube!
 
@@ -388,17 +388,17 @@ may not work right unless you update it
 
 Download a YouTube video:
 ```bash
-youtube-dl https://www.youtube.com/watch?v=dQw4w9WgXcQ
+yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
 Download a YouTube video and convert to mp3:
 ```bash
-youtube-dl --restrict-filenames --ignore-errors -x --audio-format mp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+yt-dlp --restrict-filenames --ignore-errors -x --audio-format mp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
 ```
 
 Download an album from bandcamp as mp3 files:
 ```bash
-youtube-dl https://example.bandcamp.com/album/an-album -x --audio-format best
+yt-dlp https://example.bandcamp.com/album/an-album -x --audio-format best
 ```
 
 Download a video from any other website via m3u8 manifest
@@ -407,7 +407,7 @@ Download a video from any other website via m3u8 manifest
 
 download via m3u8:
 ```bash
-youtube-dl "https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8"
+yt-dlp "https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8"
 ```
 
 ## eyeD3
@@ -479,7 +479,7 @@ All commands require [`ImageMagick`](https://imagemagick.org/index.php) package 
 
 Display info on an image:
 ```bash
-magick identify portrait.jpeg 
+magick identify portrait.jpeg
 ```
 
 set `-P` to number of physical CPU cores on computer
@@ -493,7 +493,7 @@ find . -type f \( -iname \*.CR2 -o -iname \*.ARW -o -iname \*.3fr -o -iname \*.a
 
 * potato CPU: `...xargs -0 -n 1 -P 1 -I {}...`
 * NASA CPU: `...xargs -0 -n 1 -P 64 -I {}...`
-* Max Twitter resolution:  `...-resize 4096x4096...` (preserves aspect ratio, scales by maximum of h and w) 
+* Max Twitter resolution:  `...-resize 4096x4096...` (preserves aspect ratio, scales by maximum of h and w)
 * higher quality JPEG: `...-format JPG -quality 97...`
 
 
