@@ -451,6 +451,22 @@ ffmpeg -loop 1 -r 1 -i pic.jpg -i audio.mp3 -c:a copy -shortest -c:v libx264 out
 ```
 where `audio.mp3` is music, `pic.jpg` is album cover, `output.mp4` is output filename
 
+## trim a video
+trim a video without re-encoding
+
+
+from [stackoverflow.com/a/42827058](https://stackoverflow.com/a/42827058)
+
+use:
+```bash
+ffmpeg -ss 00:01:00 -to 00:02:00  -i input.mp4 -c copy output.mp4
+```
+> **-i:** This specifies the input file. In that case, it is (input.mp4).  <br/> 
+> **-ss:** Used with -i, this seeks in the input file (input.mp4) to position. <br /> **00:01:00:** This is the time your trimmed video will start with. <br />
+> **-to:** This specifies duration from start (00:01:40) to end (00:02:12). <br />**00:02:00:** This is the time your trimmed video will end with. <br />
+> **-c copy:** This is an option to trim via stream copy. (NB: Very fast) <br />
+
+Note: **`-to`** specifies the length of the footage clip, not the end timecode!
 
 ## heavily compress a video
 ideal for spotty networks, like w/ cell phones
