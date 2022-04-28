@@ -489,13 +489,23 @@ ffmpeg -i input.mp4 -strict -2 -max_muxing_queue_size 9999 -threads 4 -vf scale=
 # ImageMagick
 Oneliners for [`ImageMagick`](https://imagemagick.org/index.php), the powerful photo manipulation tool
 
-credit [Drew Lustro](https://drewlustro.com/blog/batch-convert-raw-images-to-jpeg-with-imagemagick-in-parallel)
+credit [Drew Lustro](https://drewlustro.com/blog/batch-convert-raw-images-to-jpeg-with-imagemagick-in-parallel) and [Lukasz Tkacz](https://tkacz.pro/some-useful-convert-imagemagick-commands/)
 
 All commands require [`ImageMagick`](https://imagemagick.org/index.php) package and associated pre-requisites
 
 Display info on an image:
 ```bash
 magick identify portrait.jpeg
+```
+
+Fix image orientation
+```bash
+convert INPUT_FILE -auto-orient OUTPUT_FILE
+```
+
+Remove transparency
+```bash
+convert INPUT_FILE -alpha remove OUTPUT_FILE
 ```
 
 set `-P` to number of physical CPU cores on computer
@@ -520,9 +530,34 @@ Compress a JPEG to smaller file size:
 convert image.jpg -quality 75 output_file.jpg
 ```
 
-Convert an image to a PDF:
+Scale an image, preserve ratio:
+```bash
+convert INPUT_FILE -resize 75% OUTPUT_FILE
+```
+
+Resize, within bounding limits, still preserving ratio:
+```bash
+convert INPUT_FILE -resize 640x480 OUTPUT_FILE
+```
+
+Convert an image:
 ```bash
 convert vaccine_card.jpg vaccine_card.pdf
+```
+
+Rotate an image 90 degrees:
+```bash
+convert INPUT_FILE -rotate "+90" OUTPUT_FILE
+```
+
+Rotate only if width is greater than height:
+```bash
+convert INPUT_FILE -rotate "+90>" OUTPUT_FILE
+```
+
+Rotate only if height is greater than width:
+```bash
+convert INPUT_FILE -rotate "+90<" OUTPUT_FILE
 ```
 
 Convert video to GIF animated image:
