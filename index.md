@@ -572,6 +572,20 @@ Merge PDF files:
 gs -dBATCH -dNOPAUSE -q -sDEVICE=pdfwrite -sOutputFile=vaccine_combined.pdf vaccine_card.pdf booster.pdf
 ```
 
+Replace page in a PDF document:
+
+extract page from new document:
+```bash
+gs -sDEVICE=pdfwrite -sOutputFile=part1.pdf -dBATCH -dNOPAUSE -sPageList=1 newdoc.pdf
+```
+
+extract all other pages from old document:
+```bash
+gs -sDEVICE=pdfwrite -sOutputFile=part2.pdf -dBATCH -dNOPAUSE -sPageList=2- olddoc
+```
+
+combine two parts together (see above)
+
 ---
 # Get Tools
 ## Install Matthew's favorite tools
