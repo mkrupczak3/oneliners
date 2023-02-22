@@ -55,7 +55,34 @@ Search occurences of a phrase in all files in current directory and its subdirec
 ag "kind: ReplicaSet"
 ```
 
-## permissions (`chown` and `chmod`)
+## accounts and groups
+
+create an account for maryq and add it to group "sambashare":
+```bash
+sudo useradd -s /bin/bash -m -c "Mary Quinn" -Gsambashare maryq
+```
+
+change password for an account, e.g. maryq:
+```bash
+sudo passwd maryq
+```
+
+create a new group:
+```bash
+sudo groupadd coolpeople
+```
+
+add existing user to a group:
+```bash
+sudo usermod -a -G coolpeople maryq
+```
+
+list groups a user is a member of:
+```bash
+groups maryq
+```
+
+## file permissions
 
 change ownership of a file `file1.txt` to user `root`:
 ```bash
@@ -461,7 +488,7 @@ use:
 ```bash
 ffmpeg -ss 00:01:00 -to 00:02:00  -i input.mp4 -c copy output.mp4
 ```
-> **-i:** This specifies the input file. In that case, it is (input.mp4).  <br/> 
+> **-i:** This specifies the input file. In that case, it is (input.mp4).  <br/>
 > **-ss:** Used with -i, this seeks in the input file (input.mp4) to position. <br /> **00:01:00:** This is the time your trimmed video will start with. <br />
 > **-to:** This specifies duration from start (00:01:40) to end (00:02:12). <br />**00:02:00:** This is the time your trimmed video will end with. <br />
 > **-c copy:** This is an option to trim via stream copy. (NB: Very fast) <br />
