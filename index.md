@@ -415,17 +415,17 @@ may not work right unless you update it
 
 Download a YouTube video:
 ```bash
-yt-dlp https://www.youtube.com/watch?v=dQw4w9WgXcQ
+yt-dlp 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"
 ```
 
 Download a YouTube video and convert to mp3:
 ```bash
-yt-dlp --restrict-filenames --ignore-errors -x --audio-format mp3 https://www.youtube.com/watch?v=dQw4w9WgXcQ
+yt-dlp --restrict-filenames --ignore-errors -x --audio-format mp3 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
 ```
 
 Download an album from bandcamp as mp3 files:
 ```bash
-yt-dlp https://example.bandcamp.com/album/an-album -x --audio-format best
+yt-dlp 'https://example.bandcamp.com/album/an-album' -x --audio-format best
 ```
 
 Download a video from any other website via m3u8 manifest
@@ -434,7 +434,7 @@ Download a video from any other website via m3u8 manifest
 
 download via m3u8:
 ```bash
-yt-dlp "https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8"
+yt-dlp 'https://ga.video.cdn.pbs.org/videos/frontline/279e5586-ffca-4870-a56f-f6452b06aafd/2000244604/hd-16x9-mezzanine-1080p/00004005-hls-16x9-1080p.m3u8'
 ```
 
 ## eyeD3
